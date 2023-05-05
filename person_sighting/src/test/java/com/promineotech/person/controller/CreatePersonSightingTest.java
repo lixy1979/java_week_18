@@ -1,6 +1,9 @@
 package com.promineotech.person.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,13 +62,13 @@ class CreatePersonSightingTest {
 		assertThat(personSighting.getPerson().getPersonId()).isEqualTo("YANG_BO");
 		assertThat(personSighting.getPerson().getFamilyName()).isEqualTo("YANG");
 		assertThat(personSighting.getPerson().getGivenName()).isEqualTo("BO");
-		assertThat(personSighting.getPerson().getBirthday()).isEqualTo("2018-12-01");
+		assertThat(personSighting.getPerson().getBirthday()).isEqualTo(LocalDate.parse("2018-12-01"));
 		assertThat(personSighting.getPerson().getGender()).isEqualTo("male");
-		assertThat(personSighting.getPerson().getMissingDate()).isEqualTo("2022-1-28");
+		assertThat(personSighting.getPerson().getMissingDate()).isEqualTo(LocalDate.parse("2022-1-28"));
 		assertThat(personSighting.getPerson().getHomeProvinceId()).isEqualTo("HENAN");
 		
 		assertThat(personSighting.getSighting().getSightingId()).isEqualTo("YANG_BO");
-		assertThat(personSighting.getSighting().getSightingDate()).isEqualTo("2022-3-15");
+		assertThat(personSighting.getSighting().getSightingDate()).isEqualTo(LocalDate.parse("2022-3-15"));
 		assertThat(personSighting.getSighting().getSightingProvinceId()).isEqualTo("GUIZHOU");
 		
 	}

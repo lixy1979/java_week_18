@@ -2,13 +2,14 @@ package com.promineotech.person.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -27,9 +28,8 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	  private NamedParameterJdbcTemplate jdbcTemplate;
 	  
 	  @Override
-	  public PersonSighting savePersonSighting(Person person, Sighting sighting, Province province 
-			  ) {
-		  SqlParams params = generateInsertSql(person, sighting, province);
+	  public PersonSighting savePersonSighting(Person person, Sighting sighting) {
+		  SqlParams params = generateInsertSql(person, sighting);
 		  
 		  KeyHolder keyHolder = new GeneratedKeyHolder();
 		  jdbcTemplate.update(params.sql, params.source,keyHolder);
@@ -41,7 +41,6 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 				  .personSightingPK(personSightingPk)
 				  .person(person)
 				  .sighting(sighting)
-				  .province(province)
 				  .build();
 		  //@formatter:on
 	 };
@@ -54,14 +53,13 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	  * @param province
 	  * @return
 	  */
-	  private SqlParams generateInsertSql(Person person, Sighting sighting, Province province
-	      ) {
+	  private SqlParams generateInsertSql(Person person, Sighting sighting) {
 	    // @formatter:off
 	    String sql = ""
 	        + "INSERT INTO person_sighting ("
-	        + "person_fk, sighting_fk, province_fk"
+	        + "person_fk, sighting_fk"
 	        + ") VALUES ("
-	        + ":person_fk, :sighting_fk, :province_fk"
+	        + ":person_fk, :sighting_fk"
 	        + ")";
 	    // @formatter:on
 	    
@@ -70,7 +68,6 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	    params.sql = sql;
 	    params.source.addValue("person_fk", person.getPersonPK());
 	    params.source.addValue("sighting_fk", sighting.getSightingPK());
-	    params.source.addValue("province_fk", province.getProvincePK());
 	        
 	    return params;
 	  }
@@ -102,7 +99,7 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 //	    params.put("Home_province_id", homeProvinceId);
 
 	    return Optional.ofNullable(
-	        jdbcTemplate.query(sql, params, new PersonResultSetExtractor()));
+		        jdbcTemplate.query(sql, params, new PersonResultSetExtractor()));
 	  }
 
 	  /**
@@ -130,24 +127,6 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	        jdbcTemplate.query(sql, params, new SightingResultSetExtractor()));
 	  }
 
-	  /**
-	   * 
-	   */
-	  @Override
-	  public Optional<Province> fetchProvince(String provinceId) {
-	    // @formatter:off
-	    String sql = "" 
-	        + "SELECT * " 
-	        + "FROM province " 
-	        + "WHERE province_id = :province_id";
-	    // @formatter:on
-
-	    Map<String, Object> params = new HashMap<>();
-	    params.put("province_id", provinceId);
-
-	    return Optional.ofNullable(
-	        jdbcTemplate.query(sql, params, new ProvinceResultSetExtractor()));
-	  }
 
 	 
 
@@ -195,26 +174,7 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	    }
 	  }
 
-	  /**
-	   * 
-	   * @author Promineo
-	   *
-	   */
-	  class ProvinceResultSetExtractor implements ResultSetExtractor<Province> {
-	    @Override
-	    public Province extractData(ResultSet rs) throws SQLException {
-	      rs.next();
-
-	      // @formatter:off
-	      return Province.builder()
-	          .provinceId(rs.getString("province_id"))
-	          .build();
-	      // @formatter:on
-	    }
-	  }
-
-	
-
+                                      
 	
 
 	  class SqlParams {

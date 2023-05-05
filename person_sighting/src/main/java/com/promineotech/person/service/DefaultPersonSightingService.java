@@ -24,9 +24,8 @@ public class DefaultPersonSightingService implements PersonSightingService {
 	public PersonSighting createPersonSighting(PersonSightingRequest personSightingRequest) {
 		Person person = getPerson(personSightingRequest);
 		Sighting sighting = getSighting(personSightingRequest);
-		Province province = getProvince(personSightingRequest);
-		
-		return personSightingDao.savePersonSighting(person, sighting, province);
+	
+		return personSightingDao.savePersonSighting(person, sighting);
 		
 	}
 	  
@@ -53,16 +52,7 @@ public class DefaultPersonSightingService implements PersonSightingService {
 	            "Sighting with ID=" + personSightingRequest.getSighting() + " was not found"));
 	  }
 
-	  /**
-	   * 
-	   * @param personSightingRequest
-	   * @return
-	   */
-	  private Province getProvince(PersonSightingRequest personSightingRequest) {
-	    return personSightingDao.fetchProvince(personSightingRequest.getProvince())
-	        .orElseThrow(() -> new NoSuchElementException(
-	            "Province with ID=" + personSightingRequest.getProvince() + " was not found"));
-	  }
+
 
 	  
 }
