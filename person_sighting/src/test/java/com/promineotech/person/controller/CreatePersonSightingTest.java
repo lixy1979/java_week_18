@@ -75,23 +75,18 @@ class CreatePersonSightingTest {
 	protected String createPersonSightingBody() {
 	// @formatter:off
 		return "{\n"
-				  + "  \"person\":[\n"
-				    + "    \"YANG_BO\",\n"
-				    + "    \"YANG\",\n"
-				    + "    \"BO\",\n"
-				    + "    \"2018-12-01\",\n"
-				    + "    \"male\",\n"
-				    + "    \"2022-1-28\"\n"
-				    + "    \"HENAN\"\n"
-				    + "  ]\n"	
-		          + "  \"sight\":[\n"
-				    + "   \"YANG_BO\",\n"
-				    + "    \"2022-3-15\"\n"
-				    + "    \"GUIZHOU\"\n"
-				    + "  ]\n"
-		    + "}";
+	    + "  \"personId\":\"YANG_BO\",\n"
+	    + "  \"familyName\":\"YANG\",\n"
+	    + "  \"givenName\":\"BO\",\n"
+	    + "  \"birthday\":\"2018-12-01\",\n"
+	    + "  \"gender\":\"male\",\n"
+	    + "  \"missingDate\":\"2022-1-28\",\n"
+	    + "  \"homeProvince\":\"HENAN\",\n"
+	    + "  \"sightingId\":\"YANG_BO\",\n"
+	    + "  \"sightingDate\":\"2022-3-15\",\n"
+	    + "  \"sightingProvince\":\"GUIZHOU\"\n"
+	    + "}";
 	//@formatter:on
 	}
 	
-
 }

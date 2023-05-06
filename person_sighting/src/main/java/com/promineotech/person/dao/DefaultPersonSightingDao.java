@@ -3,13 +3,13 @@ package com.promineotech.person.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
+//import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
+//import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.promineotech.person.entity.Person;
 import com.promineotech.person.entity.PersonSighting;
-import com.promineotech.person.entity.Province;
+//import com.promineotech.person.entity.Province;
 import com.promineotech.person.entity.Sighting;
 
 @Component
@@ -75,7 +75,7 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	   * 
 	   */
 	  @Override
-	  public Optional<Person> fetchPerson(String personId) {
+	  public Optional<Person> fetchPerson(Person personId) {
 	    // @formatter:off
 	    String sql = "" 
 	        + "SELECT * " 
@@ -106,7 +106,7 @@ public class DefaultPersonSightingDao implements PersonSightingDao {
 	   * 
 	   */
 	  @Override
-	  public Optional<Sighting> fetchSighting(String sightingId) {
+	  public Optional<Sighting> fetchSighting(Sighting sightingId) {
 	    // @formatter:off
 	    String sql = "" 
 	        + "SELECT * " 

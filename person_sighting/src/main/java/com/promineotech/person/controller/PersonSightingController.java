@@ -28,12 +28,12 @@ import io.swagger.v3.oas.annotations.Parameter;
 public interface PersonSightingController {
 	//@formatter:off
 	@Operation(
-			summary = "Create a personSighting",
-			description = "returns the created personSighting",
+			summary = "Create a findPerson",
+			description = "returns the created findPerson",
 			responses = {
 					@ApiResponse(
 							responseCode = "201", 
-							description = "The created personSighting is returned", 
+							description = "The created findPerson is returned", 
 							content = @Content(mediaType = "application/json",
 							schema =@Schema(implementation = PersonSighting.class))),						
 					@ApiResponse(
@@ -43,7 +43,7 @@ public interface PersonSightingController {
 							),
 					@ApiResponse(
 							responseCode = "404", 
-							description = "A personSighting component was not found with the input criteria", 
+							description = "A findPerson component was not found with the input criteria", 
 							content = @Content(mediaType = "application/json")
 							),
 					@ApiResponse(

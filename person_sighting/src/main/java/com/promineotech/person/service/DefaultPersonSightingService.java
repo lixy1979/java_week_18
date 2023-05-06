@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.promineotech.person.dao.PersonSightingDao;
+import com.promineotech.person.entity.FindPerson;
 import com.promineotech.person.entity.Person;
 import com.promineotech.person.entity.PersonSighting;
 import com.promineotech.person.entity.PersonSightingRequest;
-import com.promineotech.person.entity.Province;
+//import com.promineotech.person.entity.Province;
 import com.promineotech.person.entity.Sighting;
 
 @Service
@@ -24,6 +25,7 @@ public class DefaultPersonSightingService implements PersonSightingService {
 	public PersonSighting createPersonSighting(PersonSightingRequest personSightingRequest) {
 		Person person = getPerson(personSightingRequest);
 		Sighting sighting = getSighting(personSightingRequest);
+		
 	
 		return personSightingDao.savePersonSighting(person, sighting);
 		
@@ -54,5 +56,4 @@ public class DefaultPersonSightingService implements PersonSightingService {
 
 
 
-	  
 }

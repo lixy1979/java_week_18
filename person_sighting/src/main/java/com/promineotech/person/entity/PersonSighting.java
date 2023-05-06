@@ -12,7 +12,7 @@ public class PersonSighting {
   private Long personSightingPK;
   private Person person;
   private Sighting sighting;
-  private Province province;
+
   
   @JsonIgnore
   public Long getPersonSightingPK() {
