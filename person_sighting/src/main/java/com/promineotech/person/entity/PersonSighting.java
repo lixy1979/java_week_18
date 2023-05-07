@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class PersonSighting {
   private Long personSightingPK;
-  private Person person;
+  private Person person; 
   private Sighting sighting;
 
   

@@ -22,18 +22,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.Parameter;
 
 @RequestMapping("/personSighting")
-@OpenAPIDefinition(info = @Info(title = "Person Sighting service"), servers = {
+@OpenAPIDefinition(info = @Info(title = "PersonSighting service"), servers = {
 @Server(url = "http://localhost:8080",description = "local server.")})
 @Validated
 public interface PersonSightingController {
 	//@formatter:off
 	@Operation(
-			summary = "Create a findPerson",
-			description = "returns the created findPerson",
+			summary = "Create a PersonSighting",
+			description = "returns the created PersonSighting",
 			responses = {
 					@ApiResponse(
 							responseCode = "201", 
-							description = "The created findPerson is returned", 
+							description = "The created PersonSighting is returned", 
 							content = @Content(mediaType = "application/json",
 							schema =@Schema(implementation = PersonSighting.class))),						
 					@ApiResponse(
@@ -43,7 +43,7 @@ public interface PersonSightingController {
 							),
 					@ApiResponse(
 							responseCode = "404", 
-							description = "A findPerson component was not found with the input criteria", 
+							description = "A PersonSighting component was not found with the input criteria", 
 							content = @Content(mediaType = "application/json")
 							),
 					@ApiResponse(
@@ -56,7 +56,7 @@ public interface PersonSightingController {
 					@Parameter(
 							name = "personSightingRequest", 
 							required = true,
-							description = "The order as JSON"),
+							description = "The personSighting as JSON"),
 			}
 			)
 	  @PostMapping
